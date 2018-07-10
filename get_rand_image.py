@@ -3,13 +3,18 @@ import sys
 import random
 import shutil
 
-imgdir = '../data/missfresh_goods'
+
+'''
+随机分割数据集为query 和lib，
+copy到各自目录queryimg 和 libimg中存储。
+其中10%作为lib 剩下的作为query
+'''
+
+imgdir = '../data/missfresh_goods'		
 savedir = '../data'
 dirlist = os.listdir(imgdir)
 
-search_p = open("./lib_name.txt",'wt')
-query_p = open('./query_name.txt','wt')
-
+libratio = 0.1
 
 
 for n,m in enumerate(dirlist):
@@ -33,15 +38,12 @@ for n,m in enumerate(dirlist):
 
     for imgname in imglist:
         rval = random.random()
-        if rval < 0.1:
-            search_p.write('%s/%s/%s\n'%(m,'images',imgname))
+        if rval < libratio:
             real_len += 1
             shutil.copyfile(os.path.join(imgd,imgname),os.path.join(search_p_dir,imgname))
         else:
-            query_p.write('%s/%s/%s\n'%(m,'images',imgname))
             shutil.copyfile(os.path.join(imgd,imgname),os.path.join(query_p_dir,imgname))
     print 'search len %d , %d'%(real_len,use_len)
-query_p.close()
-search_p.close()
+
 
         

@@ -5,6 +5,11 @@ import sys
 import numpy as np
 
 class Evaluation:
+'''
+评价搜索结果， 分类统计precision 和 recall ，并绘制图
+precision：topN中有一个与待搜索的类一致即认为搜索到
+recall： 能否搜索到 相似度>thre 
+'''
     classNum = 0
     topN = 0
     threshV = 0.0

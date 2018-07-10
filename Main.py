@@ -84,7 +84,6 @@ def search_image_by_image():
             suffix = os.path.splitext(query_img_path)[1]
             if suffix == '.jpg' or suffix == '.png' or suffix == '.jpeg':
 
-                topN = 8
                 result_class, result_image_path, result_conf = search_by_image(mFeature_Extractor, mFeature_Sets, query_img_path, top=topN)
                 evl_show.CalEval(result_class,result_conf,label)
         evl_show.GetResult()
